@@ -1,0 +1,63 @@
+{
+  "name": "react-native-searchbar",
+  "version": "1.16.0",
+  "description": "A pretty awesome search bar for React Native",
+  "keywords": [
+    "react-native",
+    "search",
+    "bar",
+    "searchbar",
+    "animated",
+    "ios",
+    "android"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "fix": "npm run lint -- --fix",
+    "lint": "eslint index.js",
+    "prepublishOnly": "npm run test",
+    "test": "npm run lint"
+  },
+  "author": {
+    "name": "Dave Olsen",
+    "email": "do@localz.co",
+    "url": "https://github.com/daveols"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/localz/react-native-searchbar.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/localz/react-native-searchbar/issues"
+  },
+  "homepage": "https://github.com/localz/react-native-searchbar#readme",
+  "dependencies": {
+    "lodash": "^4.16.4",
+    "react-native-vector-icons": "^4.4.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.8.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react-native": "^3.1.0",
+    "prettier": "^1.7.4",
+    "prop-types": "^15.5.10"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:react-native/all"
+    ],
+    "plugins": [
+      "prettier",
+      "react",
+      "react-native"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+      "react-native/no-inline-styles": 0
+    }
+  }
+}

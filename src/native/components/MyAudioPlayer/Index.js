@@ -249,7 +249,9 @@ class Index extends Component {
     this._video = component;
   };
 
-
+  _onShowText = () => {
+    this.props.onShowText()
+  }
   _onPressShuffle = (status) => {
     console.log('shuffle click')
     const {playstatus} = this.props;
@@ -309,7 +311,11 @@ class Index extends Component {
         <StatusBar hidden={true} />
         <Header onDownPress={() => { Actions.cards({}) }} onQueuePress={() => { this._onShare() }} message="Playing From Charts" />
         <AlbumArt url={tracks[selectedTrackIndex].image} />
-        <TrackDetails isFavourite={this.state.isFavourite} onAddPress={() => { this._onAddFavourite(tracks[selectedTrackIndex]) }} title={tracks[selectedTrackIndex].title} artist={tracks[selectedTrackIndex].author} />
+        <TrackDetails isFavourite={this.state.isFavourite} 
+        onAddPress={() => { this._onAddFavourite(tracks[selectedTrackIndex]) }} 
+        onMorePress={() => { this._onShowText() }}  
+        title={tracks[selectedTrackIndex].title} 
+        artist={tracks[selectedTrackIndex].author} />
         <SeekBar
           onSeek={this.seek.bind(this)}
           trackLength={this.state.totalLength}

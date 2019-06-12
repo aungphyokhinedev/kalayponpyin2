@@ -24,13 +24,15 @@ render = () =>{
   return (
     <Router>
       <Scene  hideNavBar key="root">
-        <Scene  type="reset" key="home"
+        <Scene   key="home"
           component={Home}
           title="Home"
-          initial
+          
         />
         <Scene
+        type="reset"
           key="cards"
+          initial
           component={MyStoryList}
           title="Stories"
          

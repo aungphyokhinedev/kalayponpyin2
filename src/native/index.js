@@ -50,11 +50,12 @@ class Root extends React.Component {
     }
     return (
         <Provider store={store}>
+
           <PersistGate
             loading={<Loading />}
             persistor={persistor}
           >
-<PublisherBanner
+     <PublisherBanner
           bannerSize="fullBanner"
           adUnitID="ca-app-pub-2053424925474556/4122021146" // Test ID, Replace with your-admob-unit-id
           testDeviceID="EMULATOR"
@@ -63,6 +64,7 @@ class Root extends React.Component {
         />
             <Routes>
               </Routes>
+         
           </PersistGate>
         </Provider>
     );

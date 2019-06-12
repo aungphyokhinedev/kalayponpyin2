@@ -4,6 +4,7 @@ import {
     View,
     FlatList,
     TouchableOpacity,
+    ActivityIndicator,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'; 
 import { connect } from 'react-redux';
@@ -11,6 +12,7 @@ import { Appbar, Searchbar } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import { getStories } from '../../actions/Story';
 import CustomText from './CustomText'
+import SearchBar from 'react-native-searchbar';
 
 import {MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -19,7 +21,7 @@ class StoryList extends Component {
         isSearching: false,
         query: null,
         isFavouriteOnly: false,
-        tracks: []
+        tracks: null
     }
     static propTypes = {
         stories: PropTypes.shape({
@@ -31,7 +33,11 @@ class StoryList extends Component {
     }
     componentDidMount = () => {
         console.log(this.props.stories)
-        this.setState({tracks:this.props.stories.stories});
+        this.props.fetchStories().then(()=>{
+            this.setState({tracks:this.props.stories.stories});
+        })
+        
+        
     }
 
     setFavouriteOnly = (status) => {
@@ -40,20 +46,17 @@ class StoryList extends Component {
 
     }
     renderSubHeader = () => {
-        const { isSearching, query,isFavouriteOnly } = this.state;
-        if (isSearching) {
-            return (
-                <View style={styles.subheader}>
-                    <Searchbar
-                        placeholder="Search"
-                        onChangeText={query => { this.setState({ query }); }}
-                        value={query}
-                    />
-                </View>
-            )
-        }
+        const { isSearching, query,isFavouriteOnly,tracks } = this.state;
+     
         return (
             <View style={styles.subheader}>
+            <SearchBar
+                    ref={(ref) => this.searchBar = ref}
+                    data={tracks}
+                   // handleResults={this._handleResults}
+                    showOnLoad={false}
+                    handleChangeText={query => { this.setState({ query }); }}
+                    />
                 <CustomText style={styles.headersubtitle}>{isFavouriteOnly?'Favourites':'All Stories'}</CustomText>
                 <View style={styles.headerbackicon}>
                     <TouchableOpacity onPress={()=>this.setFavouriteOnly(isFavouriteOnly)}>
@@ -71,6 +74,13 @@ class StoryList extends Component {
     onSearchPress = () => {
         const { isSearching } = this.state;
         this.setState({ isSearching: !isSearching })
+        if(!isSearching){
+            this.searchBar.show()
+        }
+       else{
+        this.searchBar.hide()
+       }
+       
     }
 
     renderHeader = () => {
@@ -119,7 +129,7 @@ class StoryList extends Component {
                     <View style={styles.fronticon}>
                         <MaterialIcons
                             name="music-note"
-                            size={45}
+                            size={35}
                             color="#555"
                         />
                     </View>
@@ -143,10 +153,10 @@ class StoryList extends Component {
                 return favourites.indexOf(track.id) >= 0
             })
         }
-        if(isSearching) {
-            chooseTracks = chooseTracks.filter(track=>{
-                return track.title.indexOf(query) >= 0
-            })
+        if(isSearching) {     
+                chooseTracks = chooseTracks.filter(track=>{
+                    return track.title.indexOf(query) >= 0
+                })      
         }
 
         return chooseTracks
@@ -154,20 +164,22 @@ class StoryList extends Component {
 
     render() {
         const  tracks  = this.getTracks();
-        if(!tracks){
-            return (<View/>)
-        }
+      
         return (
-            <View style={{ flex: 1 }}>
+            <View style={styles.container}>
+             {this.renderSubHeader()}
                 {this.renderHeader()}
-                {this.renderSubHeader()}
+               
                 <View style={{ flex: 1 }}>
+                {tracks ? 
                     <FlatList
                         style={{ backgroundColor: '#151515' }}
                         data={tracks}
                         renderItem={this.renderRow.bind(this)}
                         keyExtractor={item => item.id.toString()}
-                    />
+                    /> :
+                    <ActivityIndicator size="small" color="#ffffff33" />
+                }
                 </View>
 
             </View>
@@ -182,6 +194,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#151515',
+        paddingTop:10
     },
     headeritem: {
         alignItems: 'center',
@@ -207,7 +220,8 @@ const styles = StyleSheet.create({
         flex: 1,
         color: '#fff7',
         fontFamily: 'unicode',
-        fontSize: 18,
+        fontSize: 16,
+        marginHorizontal: 10,
         textAlign: 'left',
     },
     headeritemtail: {

@@ -69,7 +69,6 @@ class Home extends Component {
     });
   
 
-    
 
     componentDidMount = () => {
         console.log(this.props.trackId)
@@ -81,15 +80,15 @@ class Home extends Component {
     render() {
        
 
-    renderScene = ({ route }) => {
+    renderScene = ({ route, jumpTo }) => {
         switch (route.key) {
           case 'first':
             return (
-                <View style={styles.container}>
-                <Player trackId={this.props.trackId}  changeIndex={this.changeIndex}  />
+                <View jumpTo={jumpTo}  style={styles.container}>
+                <Player onShowText={()=>{onShowText()}} trackId={this.props.trackId}  changeIndex={this.changeIndex}  />
                 </View>
             );
-            case 'second': return (<ScrollView style={styles.scroll}>
+            case 'second': return (<ScrollView jumpTo={jumpTo}  style={styles.scroll}>
                 <View style={styles.textContainer}>
                  <CustomText style={styles.storyText}>
                      {this.state.storyText}
@@ -100,6 +99,12 @@ class Home extends Component {
             return null;
         }
       };
+
+
+    onShowText = () => {
+      console.log('on show text')
+      this.setState({ index: 1 })
+    }
      
       return (
         <TabView

@@ -35,7 +35,7 @@ const TrackDetails = ({
     </View>
     <TouchableOpacity onPress={onMorePress}>
       <MaterialCommunityIcons style={{opacity:isLiked?1:.5}}
-                                            name="heart-circle-outline"
+                                            name="text-subject"
                                             size={24}
                                             color="#fff"
                                         />
