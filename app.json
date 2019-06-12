@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "version": "3.0.0",
+    "name": "Kha Lay Pon Pyin",
+    "slug": "kha-lay-pon-pyin",
+    "privacy": "public",
+    "sdkVersion": "32.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon2.png",
+    "splash": {
+      "image": "./assets/splash4.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#151515"
+    },
+    "android": {
+      "package": "com.cybernetics.khalayponpyin",
+      "versionCode": 4,
+      "permissions": [
+        "default" 
+      ]
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}

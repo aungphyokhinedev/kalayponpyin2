@@ -1,0 +1,44 @@
+{
+  "name": "react-native-parallax-swiper",
+  "version": "1.1.7",
+  "description": "Full Screen Parallax Swiper Allowing Arbitrary UI Injection",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachgibson/react-native-parallax-swiper.git"
+  },
+  "keywords": [
+    "react-native-component",
+    "react-native",
+    "ios",
+    "parallax",
+    "scrollable",
+    "swiper",
+    "gallery-swiper"
+  ],
+  "author": "Zach Gibson",
+  "license": "MIT",
+  "homepage": "https://github.com/zachgibson/react-native-parallax-swiper#react-native-parallax-swiper",
+  "bugs": {
+    "url": "https://github.com/zachgibson/react-native-parallax-swiper/issues"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-preset-react-native": "^1.9.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-class-property": "^1.0.6",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-prefer-class-properties": "^1.0.0",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-react-native": "^2.3.2"
+  },
+  "peerDependencies": {
+    "react": ">=15.3.1",
+    "react-native": ">=0.37.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.7"
+  }
+}
